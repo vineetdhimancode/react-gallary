@@ -1,14 +1,15 @@
 import { useState } from "react"
 
-export const SearchForm = ({onSubmit}) => {
-    const [searchTerm, setSearchTerm] = useState('')
+export const SearchForm = ({searchText}) => {
+    const [text, setText] = useState('')
 
-    const handleSubmit = () => {
-        onSubmit(searchTerm)
+    const onSubmit = (e) => {
+        e.preventDefault()
+        searchText(text)
     }
 
-    return <form action="" onSubmit={(e) => e.preventDefault()}>
-        <input readOnly={false} type="text" placeholder="Search image..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
-        <button type="submit" onClick={handleSubmit}>Search</button>
+    return <form action="" onSubmit={onSubmit}>
+        <input readOnly={false} type="text" placeholder="Search image..." value={text} onChange={(e) => setText(e.target.value)}/>
+        <button type="submit">Search</button>
     </form>
 }
